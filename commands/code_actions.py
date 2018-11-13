@@ -1,5 +1,6 @@
 import sublime
 import sublime_plugin
+import time
 
 from ..lib import omnisharp
 from ..lib import helpers
@@ -110,7 +111,7 @@ class OmniSharpRunCodeAction(sublime_plugin.TextCommand):
     view = self.view.window().open_file(args['change']['FileName'])
 
     while(view.is_loading()):
-        pass
+        time.sleep(0.02)
 
     for change in args['change']['Changes']:
         region = sublime.Region(
